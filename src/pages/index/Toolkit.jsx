@@ -1,7 +1,7 @@
 import { Header } from "./components/Header";
 // Import Frontend assets
 import HTML from "../../assets/technologies/frontend/html.png";
-import CSS from "../../assets/technologies/frontend/css.png";
+import CSS from "../../assets/technologies/frontend/CSS.png";
 import Javascript from "../../assets/technologies/frontend/javascript.png";
 import React from "../../assets/technologies/frontend/react.png";
 import Remix from "../../assets/technologies/frontend/remix.png";
