@@ -9,3 +9,72 @@ body {
   box-sizing: border-box;
   font-family: "Passion One", "Times New Roman", "Sans Serif";
 }
+
+.project {
+  transform-style: preserve-3d;
+  box-shadow:
+    1px 1px 0 1px #f9f9fb,
+    -1px 0 7px 0 rgba(34, 33, 81, 0.01),
+    7px 7px 7px 0 rgba(34, 33, 81, 0.25);
+  transition:
+    0.4s ease-in-out transform,
+    0.4s ease-in-out box-shadow;
+}
+
+.project:hover {
+  transform: translate3d(0px, -3px, 0px);
+  box-shadow:
+    1px 1px 0 1px #f9f9fb,
+    -1px 0 14px 0 rgba(34, 33, 81, 0.01),
+    32px 32px 14px -10px rgba(34, 33, 81, 0.15);
+}
+
+.box-shadow {
+  box-shadow:
+    1px 1px 0 1px #f9f9fb,
+    -1px 0 7px 0 rgba(34, 33, 81, 0.01),
+    7px 7px 7px 0 rgba(34, 33, 81, 0.25);
+}
+
+.icons-container i:hover {
+  transform: scale(1.2);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+
+.heading {
+  overflow: hidden;
+  text-align: center;
+}
+
+.heading::before,
+.heading::after {
+  content: "";
+  display: inline-block;
+  height: 4px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.white-heading::before,
+.white-heading::after {
+  background-color: white;
+}
+
+.black-heading::before,
+.black-heading::after {
+  background-color: #000;
+}
+
+.heading::before {
+  right: 0.3em;
+  margin-left: -50%;
+}
+
+.heading::after {
+  left: 0.3em;
+  margin-right: -50%;
+}

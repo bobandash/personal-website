@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        primary: "black",
-        secondary: "#D9D9D9",
+        primary: "#292929",
+        secondary: "#C5C6D0",
       },
       screens: {
         xs: "350px",
