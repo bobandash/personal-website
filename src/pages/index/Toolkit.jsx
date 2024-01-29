@@ -36,16 +36,13 @@ const ToolKit = () => {
   return (
     <div className="py-6 sm:py-8 md:py-10">
       <div className="mx-auto flex w-10/12 max-w-[1400px] flex-col gap-2 sm:gap-4 lg:gap-6">
-        <Header text={"Expertise"} isBlack={false} />
+        <Header text={"Expertise"} />
         <div className="flex flex-col items-center gap-7 lg:mb-3 lg:flex-row lg:justify-around 2xl:mx-auto 2xl:w-[1200px] 2xl:justify-between">
           <Frontend />
           <Backend />
           <OtherTechnology />
         </div>
         <Interests />
-        <h1 className="xs:text-2xl mt-4 pt-2 text-center text-xl uppercase text-red-700 sm:text-3xl md:text-4xl lg:text-5xl">
-          And I'm Constantly Learning More...
-        </h1>
       </div>
     </div>
   );

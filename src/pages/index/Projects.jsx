@@ -12,7 +12,6 @@ import BlankMod from "../../assets/projects/blankmod.png";
 import { useGSAP } from "@gsap/react";
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
-import { useBackgroundColor } from "../../context/BackgroundColorContext";
 import { ScrollTrigger } from "gsap/all";
 
 // TO-DO: store data into json file and aws s3, cdn, or database with actual dates
@@ -121,34 +120,12 @@ const projectData = [
 
 export default function Projects() {
   const containerRef = useRef(null);
-  const { setPrimaryBackground, setSecondaryBackground } = useBackgroundColor();
-  useGSAP(() => {
-    if (containerRef.current) {
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "225 bottom",
-        end: "bottom center",
-        onEnter: () => {
-          setSecondaryBackground();
-        },
-        onEnterBack: () => {
-          setSecondaryBackground();
-        },
-        onLeave: () => {
-          setPrimaryBackground();
-        },
-        onLeaveBack: () => {
-          setPrimaryBackground();
-        },
-      });
-    }
-  }, [containerRef]);
   const reversed = [...projectData].reverse();
 
   return (
     <div className="py-6 sm:py-8 md:py-10" ref={containerRef}>
       <div className="mx-auto flex w-10/12 max-w-[1400px] flex-col gap-2 sm:gap-4 lg:gap-6">
-        <Header text={"Projects"} isBlack={true} />
+        <Header text={"Projects"} />
         <div className="flex flex-col gap-7 sm:grid sm:grid-cols-2 sm:gap-4 md:gap-5 xl:grid-cols-3 xl:gap-9">
           {reversed.map((project, index) => (
             <Project index={index} project={project} key={project.key} />
@@ -170,24 +147,8 @@ const Project = ({ project }) => {
     image,
   } = project;
 
-  /*   const projectRef = useRef(null);
-  useGSAP(() => {
-    if (projectRef.current) {
-      ScrollTrigger.create({
-        trigger: projectRef.current,
-        start: "center center",
-        onEnter: () => {
-          setSecondaryBackground();
-        },
-      });
-    }
-  }, [projectRef]); */
-
   return (
-    <div
-      className="project flex flex-col overflow-hidden rounded-xl"
-      /*      ref={index === 0 ? projectRef : null} */
-    >
+    <div className="project flex flex-col overflow-hidden rounded-xl">
       <img
         src={image}
         alt="Kirby Shopping Cart"
