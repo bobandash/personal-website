@@ -143,14 +143,6 @@ export default function Projects() {
       });
     }
   }, [containerRef]);
-  /*   useGSAP(() => {
-    const tl = gsap.timeline();
-    tl.to(".project", {
-      stagger: 0.15,
-      duration: 0.5,
-      opacity: 1,
-    });
-  }, []); */
   const reversed = [...projectData].reverse();
 
   return (

@@ -11,7 +11,7 @@ const BackgroundColorProvider = ({ children }) => {
   const [backgroundColor, setBackgroundColor] = useState("#000000");
 
   const setSecondaryBackground = useCallback(() => {
-    setBackgroundColor("#C5C6D0");
+    setBackgroundColor("#9A9BA6");
   }, []);
 
   const setPrimaryBackground = useCallback(() => {
