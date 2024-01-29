@@ -101,7 +101,7 @@ const projectData = [
     title: "Linkout",
     image: LinkOut,
     description:
-      "A discord clone where users can join/create communities, update their profile, communicate real-time with users and communities.",
+      "A full stack chat application where users can join/create communities, update their profile, communicate real-time with other users and communities.",
     technologies: "MERN Stack, Typescript, AWS S3, TailwindCSS, Socket.io, JWT",
     createdAt: "December 2023",
     github: "https://github.com/bobandash/linkout",
@@ -109,12 +109,13 @@ const projectData = [
   },
   {
     key: uuid(),
-    title: "BlankMod (Incomplete)",
+    title: "BlankMod",
     image: BlankMod,
     description:
-      "A custom storefront built using Hydrogen, Shopify's Headless Framework. Currently trying to code a campaign-based E-commerce store.",
+      "A custom storefront built using Hydrogen, Shopify's Headless Framework. Queries product data through GraphQL to be able to set up campaigns with deadlines and funding goals.",
     technologies: "Remix, GraphQL, TailwindCSS, GSAP",
-    createdAt: "Present",
+    createdAt: "January 2023",
+    liveDemo: "https://blankmod.com/",
   },
 ];
 
@@ -226,19 +227,23 @@ const Project = ({ project }) => {
                 >
                   View Code
                 </a>
-                <a
-                  href={liveDemo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-lg border-2 border-black px-2 py-1 text-xl uppercase transition-all hover:bg-black hover:text-white md:px-4"
-                >
-                  Live Preview
-                </a>
               </>
             ) : (
-              <p className="cursor-not-allowed rounded-lg border-2 bg-black px-2 py-1 text-2xl uppercase text-white md:px-4">
-                Private Repo
-              </p>
+              <>
+                <p className="cursor-not-allowed rounded-lg border-2 bg-black px-2 py-1 text-2xl uppercase text-white md:px-4">
+                  Private
+                </p>
+              </>
+            )}
+            {liveDemo && (
+              <a
+                href={liveDemo}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-lg border-2 border-black px-2 py-1 text-xl uppercase transition-all hover:bg-black hover:text-white md:px-4"
+              >
+                Live Preview
+              </a>
             )}
           </div>
         </div>
