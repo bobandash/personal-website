@@ -1,51 +1,21 @@
 import { Header } from "./components/Header";
 
 import Waldo from "../../assets/projects/waldo.png";
-import WeatherApp from "../../assets/projects/weather_app.png";
-import CVApplication from "../../assets/projects/resume.png";
 import MemoryGame from "../../assets/projects/memory_game.png";
-import KirbyBackend from "../../assets/projects/kirby_backend.png";
 import KirbyShoppingCart from "../../assets/projects/kirby_shopping_cart.png";
 import Blog from "../../assets/projects/blog.png";
 import LinkOut from "../../assets/projects/linkout.png";
 import BlankMod from "../../assets/projects/blankmod.png";
-import { useGSAP } from "@gsap/react";
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
-
-// TO-DO: store data into json file and aws s3, cdn, or database with actual dates
-// Just doing a hacky solution for now in order to submit my application
 
 const projectData = [
-  {
-    key: uuid(),
-    title: "Weather App",
-    image: WeatherApp,
-    description:
-      "Calls the WeatherAPI to fetch the weather from any location. I learned about API calls, promises, and DOM manipulation.",
-    technologies: "Javascript",
-    createdAt: "Feburary 2023",
-    github: "https://github.com/bobandash/weather-app",
-    liveDemo: "https://bobandash.github.io/weather-app/",
-  },
-  {
-    key: uuid(),
-    title: "Resume App",
-    image: CVApplication,
-    description:
-      "First exposure to react and common hooks. If you type in inputs into the form, then it shows up on the resume builder on the right.",
-    technologies: "ReactJS, CSS",
-    createdAt: "August 2023",
-    github: "https://github.com/bobandash/cv-application",
-    liveDemo: "https://bruce-creates-cv-application.netlify.app/",
-  },
   {
     key: uuid(),
     title: "Memory Game",
     image: MemoryGame,
     description:
-      "A Pokemon themed game where users select cards that are not duplicates every round. Each difficulty has a number of cards needed to win the game.",
+      "A Pokemon themed game where users select cards that are not duplicates each round. Each difficulty has a number of cards needed to win the game.",
     technologies: "ReactJS, CSS",
     createdAt: "August 2023",
     github: "https://github.com/bobandash/pokemon-memory-game",
@@ -53,22 +23,11 @@ const projectData = [
   },
   {
     key: uuid(),
-    title: "Inventory App",
-    image: KirbyBackend,
-    description:
-      "The backend of the Kirby Store. Admin users are allowed to perform basic CRUD operations with products.",
-    technologies: "Express, Node, MongoDB, Pug",
-    createdAt: "November 2023",
-    github: "https://github.com/bobandash/kirby-shopping-cart",
-    liveDemo: "https://shopkirby.onrender.com/admin",
-  },
-  {
-    key: uuid(),
     title: "Kirby Store",
     image: KirbyShoppingCart,
     description:
-      "A Kirby Themed E-Commerce Site that allows users to view product pages and add products to their cart. It calls the inventory application's data.",
-    technologies: "React, CSS",
+      "A Kirby Themed E-Commerce Site that allows users to view product pages and add products to their cart. Store administrators can perform CRUD operations on products on the admin site.",
+    technologies: "MERN Stack, Pug, CSS",
     createdAt: "November 2023",
     github: "https://github.com/bobandash/kirby-shopping-cart",
     liveDemo: "https://shopkirby.netlify.app/",
@@ -89,7 +48,7 @@ const projectData = [
     title: "Friend's Blog",
     image: Blog,
     description:
-      "A full stack blog  for my friend serving in the Peace Corps in Kosovo. Consists of an admin site (where the admin can create/update/delete posts and comments) and a user site for users to read posts.",
+      "A full stack blog  for my friend serving in the Peace Corps in Kosovo. Consists of an admin site (where the admin can perform CRUD operations with posts and comments) and a user site for users to read posts.",
     technologies: "MERN Stack, Typescript, AWS S3, CSS",
     createdAt: "December 2023",
     github: "https://github.com/bobandash/joonhee-blog",
@@ -100,7 +59,7 @@ const projectData = [
     title: "Linkout",
     image: LinkOut,
     description:
-      "A full stack chat application where users can join/create communities, update their profile, communicate real-time with other users and communities.",
+      "A real-time chat application where users can join/create communities, update their profile, message other users and communities.",
     technologies: "MERN Stack, Typescript, AWS S3, TailwindCSS, Socket.io, JWT",
     createdAt: "December 2023",
     github: "https://github.com/bobandash/linkout",
@@ -125,7 +84,8 @@ export default function Projects() {
   return (
     <div className="py-6 sm:py-8 md:py-10" ref={containerRef}>
       <div className="mx-auto flex w-10/12 max-w-[1400px] flex-col gap-2 sm:gap-4 lg:gap-6">
-        <Header text={"Projects"} />
+        <Header text={"Featured Projects"} isDesktop={true} />
+        <Header text={"Projects"} isMobile={true} />
         <div className="flex flex-col gap-7 sm:grid sm:grid-cols-2 sm:gap-4 md:gap-5 xl:grid-cols-3 xl:gap-9">
           {reversed.map((project, index) => (
             <Project index={index} project={project} key={project.key} />
@@ -183,7 +143,7 @@ const Project = ({ project }) => {
               </>
             ) : (
               <>
-                <p className="cursor-not-allowed rounded-lg border-2 bg-black px-2 py-1 text-2xl uppercase text-white md:px-4">
+                <p className="cursor-not-allowed rounded-lg border-2 border-black bg-red-700 px-2 py-1 text-xl uppercase text-white hover:text-white md:px-4">
                   Private
                 </p>
               </>
