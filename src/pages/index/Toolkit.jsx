@@ -36,7 +36,8 @@ const ToolKit = () => {
   return (
     <div className="py-6 sm:py-8 md:py-10">
       <div className="mx-auto flex w-10/12 max-w-[1400px] flex-col gap-2 sm:gap-4 lg:gap-6">
-        <Header text={"Expertise"} />
+        <Header text={"My Expertise"} isDesktop={true} />
+        <Header text={"Expertise"} isMobile={true} />
         <div className="flex flex-col items-center gap-7 lg:mb-3 lg:flex-row lg:justify-around 2xl:mx-auto 2xl:w-[1200px] 2xl:justify-between">
           <Frontend />
           <Backend />
