@@ -2,18 +2,18 @@ import "./App.css";
 import LandingScreen from "./pages/index/LandingScreen";
 import ToolKit from "./pages/index/Toolkit";
 import Projects from "./pages/index/Projects";
-import BreakIce from "./pages/index/BreakIce";
+import Connect from "./pages/index/Connect";
 import BodyContainer from "./pages/index/BodyContainer";
 import Copyright from "./pages/index/Copyright";
 
 function App() {
   return (
     <BodyContainer>
-      <LandingScreen />
+      {/*       <LandingScreen />
       <Projects />
-      <ToolKit />
-      <BreakIce />
-      <Copyright />
+      <ToolKit /> */}
+      <Connect />
+      {/*       <Copyright /> */}
     </BodyContainer>
   );
 }
