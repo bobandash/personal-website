@@ -1,127 +1,200 @@
-/* eslint-disable react/no-unescaped-entities */
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+export default function LandingScreen() {
+  const textOne = useRef(null);
+  const textTwo = useRef(null);
+  const textThree = useRef(null);
+  const textFour = useRef(null);
+  const arrowContainer = useRef(null);
+  const arrowIcon = useRef(null);
+  // TO-DO: refactor
+  useGSAP(() => {
+    const t1 = gsap.timeline({ repeat: -1 });
+    t1.fromTo(
+      textOne.current,
+      {
+        opacity: 0,
+        webkitFilter: "blur(" + 12 + "px)",
+        ease: "power2.inOut",
+      },
+      {
+        opacity: 1,
+        webkitFilter: "blur(" + 0 + "px)",
+        duration: 2,
+      },
+    )
+      .to(
+        arrowIcon.current,
+        {
+          color: "#FFFFFF",
+          duration: 0.1,
+        },
+        "<",
+      )
+      .to(textOne.current, {
+        opacity: 0,
+        webkitFilter: "blur(" + 12 + "px)",
+        duration: 2,
+        delay: 2,
+        ease: "power2.inOut",
+      })
+      .fromTo(
+        textTwo.current,
+        {
+          opacity: 0,
+          webkitFilter: "blur(" + 12 + "px)",
+        },
+        {
+          opacity: 1,
+          webkitFilter: "blur(" + 0 + "px)",
+          duration: 2,
+        },
+        "-=1.25",
+      )
+      .to(
+        arrowIcon.current,
+        {
+          color: "#F0DB4F",
+          duration: 2,
+        },
+        "<",
+      )
+      .to(textTwo.current, {
+        opacity: 0,
+        webkitFilter: "blur(" + 12 + "px)",
+        duration: 2,
+        delay: 2,
+        ease: "power2.inOut",
+      })
+      .fromTo(
+        textThree.current,
+        {
+          opacity: 0,
+          webkitFilter: "blur(" + 12 + "px)",
+        },
+        {
+          opacity: 1,
+          webkitFilter: "blur(" + 0 + "px)",
+          duration: 2,
+        },
+        "-=1.25",
+      )
+      .to(
+        arrowIcon.current,
+        {
+          color: "#5E8E3E",
+          duration: 2,
+        },
+        "<",
+      )
+      .to(textThree.current, {
+        opacity: 0,
+        webkitFilter: "blur(" + 12 + "px)",
+        duration: 2,
+        delay: 2,
+        ease: "power2.inOut",
+      })
+      .fromTo(
+        textFour.current,
+        {
+          opacity: 0,
+          webkitFilter: "blur(" + 12 + "px)",
+        },
+        {
+          opacity: 1,
+          webkitFilter: "blur(" + 0 + "px)",
+          duration: 2,
+        },
+        "-=1.25",
+      )
+      .to(
+        arrowIcon.current,
+        {
+          color: "#FF0000",
+          duration: 2,
+        },
+        "<",
+      )
+      .to(textFour.current, {
+        opacity: 0,
+        webkitFilter: "blur(" + 12 + "px)",
+        duration: 2,
+        delay: 2,
+        ease: "power2.inOut",
+      });
+  }, [textOne, textTwo, textThree, textFour]);
 
-function RoleSpans({ text }) {
-  const splitText = [...text];
-  return (
-    <h2 className={`relative overflow-hidden text-center text-white`}>
-      {splitText.map((char, index) => (
-        <span
-          key={index}
-          className={`char xs:text-4xl inline-block text-2xl sm:text-5xl md:text-6xl lg:text-7xl ${index % 2 == 0 ? "odd" : "even"}`}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </h2>
-  );
-}
+  useGSAP(() => {
+    const t2 = gsap.timeline({ repeat: -1 });
+    t2.fromTo(
+      arrowContainer.current,
+      {
+        bottom: "40px",
+      },
+      {
+        bottom: "15px",
+        duration: 1,
+      },
+    ).to(arrowContainer.current, {
+      bottom: "40px",
+      duration: 1,
+    });
+  }, [arrowContainer]);
 
-function HeaderSpans({ text }) {
-  const splitText = [...text];
   return (
     <>
-      {splitText.map((char, index) => (
-        <span
-          key={index}
-          className="line -translate-y-full text-5xl sm:text-7xl md:text-9xl"
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </>
-  );
-}
-
-export default function LandingScreen() {
-  const containerRef = useRef(null);
-  const [role] = useState("Full Stack Engineer");
-  /*   const isFirstRender = useRef(true);
-  useEffect(() => {
-    function changeRole() {
-      setTimeout(() => {
-        setRole("Full Stack Engineer");
-      }, 0);
-      setTimeout(() => {
-        setRole("eCommerce Specialist");
-      }, 5000);
-      setTimeout(() => {
-        setRole("Anime Aficionado");
-      }, 10000);
-      setTimeout(() => {
-        setRole("Future Youtuber");
-      }, 15000);
-    }
-
-    changeRole();
-    return () => {
-      clearTimeout(changeRole);
-    };
-  }, []); */
-
-  function nested() {
-    const nested =
-      gsap.timeline(/* { yoyo: true, repeat: 1, repeatDelay: 2 } */);
-    nested
-      .fromTo(
-        ".char.odd",
-        {
-          yPercent: -100,
-        },
-        {
-          yPercent: 0,
-          duration: 0.5,
-          ease: "bounce",
-        },
-      )
-      .fromTo(
-        ".char.even",
-        {
-          yPercent: 100,
-        },
-        {
-          yPercent: 0,
-          duration: 0.5,
-          ease: "bounce",
-        },
-      );
-    return nested;
-  }
-
-  // intialize gsap
-  useGSAP(() => {
-    const timeline = gsap.timeline();
-    timeline.to(".line", {
-      y: "0%",
-      stagger: 0.05,
-      ease: "power2.inOut",
-    });
-    timeline.add(nested(), "+=1");
-  }, []);
-
-  /*   useGSAP(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    nested();
-  }, [role]); */
-
-  return (
-    <div
-      className="relative flex min-h-screen flex-grow font-bold"
-      ref={containerRef}
-    >
-      <div className="mx-auto flex w-11/12 max-w-[1400px] flex-col items-center justify-center gap-4 sm:gap-7 md:gap-8">
-        <div className="rounded-md bg-white px-4 py-2 md:px-6 md:py-4 2xl:px-10">
-          <h1 className="relative flex flex-wrap overflow-hidden uppercase text-black">
-            <HeaderSpans text={"BRUCE HSU"} />
+      <svg id="filters" className="hidden">
+        <defs>
+          <filter id="threshold">
+            <feColorMatrix
+              in="SourceGraphic"
+              type="matrix"
+              values="1 0 0 0 0
+									0 1 0 0 0
+									0 0 1 0 0
+									0 0 0 255 -140"
+            />
+          </filter>
+        </defs>
+      </svg>
+      <section className="bg-primary h-screen">
+        <div className="morph h-screen">
+          <h1
+            ref={textOne}
+            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-white sm:text-7xl lg:text-8xl"
+          >
+            BRUCE HSU
+          </h1>
+          <h1
+            ref={textTwo}
+            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F]  opacity-0 sm:text-7xl lg:text-8xl"
+          >
+            WEB DEVELOPER
+          </h1>
+          <h1
+            ref={textThree}
+            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] opacity-0 sm:text-7xl lg:text-8xl"
+          >
+            eCOMMERCE EXPERT
+          </h1>
+          <h1
+            ref={textFour}
+            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] opacity-0 sm:text-7xl lg:text-8xl"
+          >
+            ASPIRING YOUTUBER
           </h1>
         </div>
-        <RoleSpans text={role} />
-      </div>
-    </div>
+        <div
+          ref={arrowContainer}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2"
+        >
+          <i
+            ref={arrowIcon}
+            className="ri-arrow-down-s-line text-7xl text-white"
+          ></i>
+        </div>
+      </section>
+    </>
   );
 }

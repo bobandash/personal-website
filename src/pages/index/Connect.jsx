@@ -2,13 +2,14 @@
 /* eslint-disable react/no-unescaped-entities */
 const GetInTouch = () => {
   return (
-    <section className="flex h-screen items-center py-4 sm:w-screen md:py-6">
+    <section className="relative flex h-screen items-center">
       <div className="mx-auto flex w-10/12 max-w-[800px] flex-col items-center justify-center gap-5 sm:gap-10">
         <h1 className="font-big text-center text-4xl font-bold uppercase sm:text-6xl lg:text-7xl">
           Let's Build The Future Together.
         </h1>
         <Icons />
       </div>
+      <Copyright />
     </section>
   );
 };
@@ -67,6 +68,17 @@ const Icons = () => {
         </a>
       </div>
     </>
+  );
+};
+
+const Copyright = () => {
+  return (
+    <div className="bg-primary absolute bottom-0 w-full py-3">
+      <p className="flex flex-row items-center justify-center gap-1 text-3xl font-bold uppercase text-white">
+        <i className="ri-copyright-line"></i>
+        2024 Bruce Hsu
+      </p>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ export default {
     extend: {
       backgroundColor: {
         primary: "#292929",
-        secondary: "#C5C6D0",
+        secondary: "#ffffff",
       },
       screens: {
         xs: "350px",

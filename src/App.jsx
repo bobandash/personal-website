@@ -4,16 +4,20 @@ import ToolKit from "./pages/index/Toolkit";
 import Projects from "./pages/index/Projects";
 import Connect from "./pages/index/Connect";
 import BodyContainer from "./pages/index/BodyContainer";
-import Copyright from "./pages/index/Copyright";
+import Separator from "./pages/index/components/Separator";
+import AboutMe from "./pages/index/AboutMe";
 
 function App() {
   return (
     <BodyContainer>
-      {/*       <LandingScreen />
+      <LandingScreen />
+      <AboutMe />
+      <Separator text={"Projects"} />
       <Projects />
-      <ToolKit /> */}
+      <Separator text={"Technologies"} />
+      <ToolKit />
+      <Separator text={"Connect"} />
       <Connect />
-      {/*       <Copyright /> */}
     </BodyContainer>
   );
 }
