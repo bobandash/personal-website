@@ -146,8 +146,6 @@ body {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-@media screen and (min-width: 400px) {
-  .morph {
-    filter: url(#threshold) blur(0.6px);
-  }
+.morph {
+  filter: url(#threshold) blur(0.6px);
 }
