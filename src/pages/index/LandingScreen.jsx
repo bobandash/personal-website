@@ -17,8 +17,8 @@ export default function LandingScreen() {
       textOne.current,
       {
         opacity: 0,
-        webkitFilter: "blur(" + 12 + "px)",
-        filter: "blur(" + 12 + "px)",
+        webkitFilter: "blur(" + 5 + "px)",
+        filter: "blur(" + 5 + "px)",
         ease: "power2.inOut",
       },
       {
@@ -38,8 +38,8 @@ export default function LandingScreen() {
       )
       .to(textOne.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 12 + "px)",
-        filter: "blur(" + 12 + "px)",
+        webkitFilter: "blur(" + 5 + "px)",
+        filter: "blur(" + 5 + "px)",
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -48,8 +48,8 @@ export default function LandingScreen() {
         textTwo.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 12 + "px)",
-          filter: "blur(" + 12 + "px)",
+          webkitFilter: "blur(" + 5 + "px)",
+          filter: "blur(" + 5 + "px)",
         },
         {
           opacity: 1,
@@ -69,8 +69,8 @@ export default function LandingScreen() {
       )
       .to(textTwo.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 12 + "px)",
-        filter: "blur(" + 12 + "px)",
+        webkitFilter: "blur(" + 5 + "px)",
+        filter: "blur(" + 5 + "px)",
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -79,8 +79,8 @@ export default function LandingScreen() {
         textThree.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 12 + "px)",
-          filter: "blur(" + 12 + "px)",
+          webkitFilter: "blur(" + 5 + "px)",
+          filter: "blur(" + 5 + "px)",
         },
         {
           opacity: 1,
@@ -100,8 +100,8 @@ export default function LandingScreen() {
       )
       .to(textThree.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 12 + "px)",
-        filter: "blur(" + 12 + "px)",
+        webkitFilter: "blur(" + 5 + "px)",
+        filter: "blur(" + 5 + "px)",
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -110,8 +110,8 @@ export default function LandingScreen() {
         textFour.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 12 + "px)",
-          filter: "blur(" + 12 + "px)",
+          webkitFilter: "blur(" + 5 + "px)",
+          filter: "blur(" + 5 + "px)",
         },
         {
           opacity: 1,
@@ -131,8 +131,8 @@ export default function LandingScreen() {
       )
       .to(textFour.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 12 + "px)",
-        filter: "blur(" + 12 + "px)",
+        webkitFilter: "blur(" + 5 + "px)",
+        filter: "blur(" + 5 + "px)",
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
