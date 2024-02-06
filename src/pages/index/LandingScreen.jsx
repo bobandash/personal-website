@@ -172,19 +172,19 @@ export default function LandingScreen() {
             </h1>
             <h1
               ref={textTwo}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F]  opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F] sm:text-6xl md:text-7xl lg:text-8xl"
             >
               WEB DEVELOPER
             </h1>
             <h1
               ref={textThree}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] sm:text-6xl md:text-7xl lg:text-8xl"
             >
               eCOMMERCE EXPERT
             </h1>
             <h1
               ref={textFour}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] sm:text-6xl md:text-7xl lg:text-8xl"
             >
               ASPIRING YOUTUBER
             </h1>
