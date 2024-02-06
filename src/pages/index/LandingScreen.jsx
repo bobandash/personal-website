@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // TO-DO: refactor gsap code into different files
 export default function LandingScreen() {
@@ -10,15 +10,27 @@ export default function LandingScreen() {
   const textFour = useRef(null);
   const arrowContainer = useRef(null);
   const arrowIcon = useRef(null);
+  const [screenWidth, setScreenWidth] = useState(screen.width);
+
+  useEffect(() => {
+    const resizeScreen = () => {
+      setScreenWidth(screen.width);
+    };
+    window.addEventListener("resize", resizeScreen);
+    return () => window.removeEventListener("resize", resizeScreen);
+  }, []);
+
   useGSAP(() => {
     const t1 = gsap.timeline({ repeat: -1 });
     const arrowIcons = [arrowIcon.current];
+    const blurAmt = screenWidth < 500 ? "blur(2px)" : "blur(5px)";
+
     t1.fromTo(
       textOne.current,
       {
         opacity: 0,
-        webkitFilter: "blur(" + 5 + "px)",
-        filter: "blur(" + 5 + "px)",
+        webkitFilter: blurAmt,
+        filter: blurAmt,
         ease: "power2.inOut",
       },
       {
@@ -38,8 +50,8 @@ export default function LandingScreen() {
       )
       .to(textOne.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 5 + "px)",
-        filter: "blur(" + 5 + "px)",
+        webkitFilter: blurAmt,
+        filter: blurAmt,
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -48,8 +60,8 @@ export default function LandingScreen() {
         textTwo.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 5 + "px)",
-          filter: "blur(" + 5 + "px)",
+          webkitFilter: blurAmt,
+          filter: blurAmt,
         },
         {
           opacity: 1,
@@ -69,8 +81,8 @@ export default function LandingScreen() {
       )
       .to(textTwo.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 5 + "px)",
-        filter: "blur(" + 5 + "px)",
+        webkitFilter: blurAmt,
+        filter: blurAmt,
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -79,8 +91,8 @@ export default function LandingScreen() {
         textThree.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 5 + "px)",
-          filter: "blur(" + 5 + "px)",
+          webkitFilter: blurAmt,
+          filter: blurAmt,
         },
         {
           opacity: 1,
@@ -100,8 +112,8 @@ export default function LandingScreen() {
       )
       .to(textThree.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 5 + "px)",
-        filter: "blur(" + 5 + "px)",
+        webkitFilter: blurAmt,
+        filter: blurAmt,
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
@@ -110,8 +122,8 @@ export default function LandingScreen() {
         textFour.current,
         {
           opacity: 0,
-          webkitFilter: "blur(" + 5 + "px)",
-          filter: "blur(" + 5 + "px)",
+          webkitFilter: blurAmt,
+          filter: blurAmt,
         },
         {
           opacity: 1,
@@ -131,13 +143,13 @@ export default function LandingScreen() {
       )
       .to(textFour.current, {
         opacity: 0,
-        webkitFilter: "blur(" + 5 + "px)",
-        filter: "blur(" + 5 + "px)",
+        webkitFilter: blurAmt,
+        filter: blurAmt,
         duration: 2,
         delay: 2,
         ease: "power2.inOut",
       });
-  }, [textOne, textTwo, textThree, textFour]);
+  }, [textOne, textTwo, textThree, textFour, screenWidth]);
 
   // bottom arrow
   useGSAP(() => {
