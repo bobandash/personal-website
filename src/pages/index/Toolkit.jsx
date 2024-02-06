@@ -31,12 +31,41 @@ import Ecommerce from "../../assets/interests/ecommerce.png";
 import Valorant from "../../assets/interests/valorant.png";
 import Youtube from "../../assets/interests/youtube.png";
 import Section from "./components/Section";
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
+import { SectionHeader } from "./components/Header";
 /* eslint-disable react/no-unescaped-entities */
 const ToolKit = () => {
+  const container = useRef(null);
+  useGSAP(() => {
+    const t1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top bottom",
+      },
+    });
+    t1.fromTo(
+      ".container",
+      {
+        opacity: 0.5,
+        scale: 1.1,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+      },
+    );
+  }, []);
+
   return (
-    <Section name={"Technologies"} isPrimary={true}>
-      <div className="flex flex-col items-center gap-7 lg:mb-3 lg:flex-row lg:justify-around 2xl:mx-auto 2xl:w-[1200px] 2xl:justify-between">
+    <Section name={"Technologies"} isPrimary={false}>
+      <SectionHeader text={"Technologies"} isBlack={true} />
+      <div
+        className="flex flex-col items-center gap-7 lg:mb-3 lg:mt-4 lg:flex-row lg:justify-around 2xl:mx-auto 2xl:w-[1200px] 2xl:justify-between"
+        ref={container}
+      >
         <Frontend />
         <Backend />
         <OtherTechnology />
@@ -48,11 +77,11 @@ const ToolKit = () => {
 
 function SkillsContainer({ header, children }) {
   return (
-    <div className="xs:w-4/5 flex w-full flex-col sm:w-[300px] lg:flex-col-reverse">
-      <h2 className="mb-1 mt-2 text-center text-4xl font-bold uppercase text-white sm:text-3xl md:mt-0 md:text-4xl lg:mt-3">
+    <div className="xs:w-4/5 container flex w-full flex-col sm:w-[300px] lg:flex-col-reverse">
+      <h2 className="mb-1 mt-2 text-center text-4xl font-bold uppercase text-black sm:text-3xl md:mt-0 md:text-4xl lg:mt-3">
         {header}
       </h2>
-      <div className="box-shadow bg-secondary flex flex-col gap-3 rounded-lg p-5 text-black md:gap-4 2xl:gap-6 2xl:px-10">
+      <div className="box-shadow flex flex-col gap-3 rounded-lg bg-gray-100 p-5 text-black md:gap-4 2xl:gap-6 2xl:px-10">
         {children}
       </div>
     </div>
@@ -128,11 +157,11 @@ function OtherTechnology() {
 
 function InterestsContainer({ header, children }) {
   return (
-    <div className="xs:w-4/5 mx-auto mt-4 flex w-full flex-col sm:w-[300px] lg:mt-0 lg:w-4/5 lg:max-w-[600px] lg:flex-col-reverse">
-      <h2 className="mb-1 mt-2 text-center text-4xl font-bold uppercase text-white sm:text-3xl md:mt-0 md:text-4xl lg:mt-3">
+    <div className="xs:w-4/5 container mx-auto flex w-full flex-col sm:w-[300px] lg:mt-0 lg:w-4/5 lg:max-w-[600px] lg:flex-col-reverse">
+      <h2 className="mb-1 mt-2 text-center text-4xl font-bold uppercase text-black sm:text-3xl md:mt-0 md:text-4xl lg:mt-3">
         {header}
       </h2>
-      <div className="box-shadow flex flex-col gap-3 rounded-lg bg-white p-5 text-black lg:flex-row lg:justify-center lg:gap-4 2xl:gap-6 2xl:px-10">
+      <div className="box-shadow flex flex-col gap-3 rounded-lg bg-gray-100 p-5 text-black lg:flex-row lg:justify-center lg:gap-4 2xl:gap-6 2xl:px-10">
         {children}
       </div>
     </div>

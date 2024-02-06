@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+
+// TO-DO: refactor gsap code into different files
 export default function LandingScreen() {
   const textOne = useRef(null);
   const textTwo = useRef(null);
@@ -8,9 +10,9 @@ export default function LandingScreen() {
   const textFour = useRef(null);
   const arrowContainer = useRef(null);
   const arrowIcon = useRef(null);
-  // TO-DO: refactor
   useGSAP(() => {
     const t1 = gsap.timeline({ repeat: -1 });
+    const arrowIcons = [arrowIcon.current];
     t1.fromTo(
       textOne.current,
       {
@@ -25,7 +27,7 @@ export default function LandingScreen() {
       },
     )
       .to(
-        arrowIcon.current,
+        arrowIcons,
         {
           color: "#FFFFFF",
           duration: 0.1,
@@ -53,7 +55,7 @@ export default function LandingScreen() {
         "-=1.25",
       )
       .to(
-        arrowIcon.current,
+        arrowIcons,
         {
           color: "#F0DB4F",
           duration: 2,
@@ -81,7 +83,7 @@ export default function LandingScreen() {
         "-=1.25",
       )
       .to(
-        arrowIcon.current,
+        arrowIcons,
         {
           color: "#5E8E3E",
           duration: 2,
@@ -109,7 +111,7 @@ export default function LandingScreen() {
         "-=1.25",
       )
       .to(
-        arrowIcon.current,
+        arrowIcons,
         {
           color: "#FF0000",
           duration: 2,
@@ -125,6 +127,7 @@ export default function LandingScreen() {
       });
   }, [textOne, textTwo, textThree, textFour]);
 
+  // bottom arrow
   useGSAP(() => {
     const t2 = gsap.timeline({ repeat: -1 });
     t2.fromTo(
@@ -159,40 +162,42 @@ export default function LandingScreen() {
         </defs>
       </svg>
       <section className="bg-primary h-screen">
-        <div className="morph h-screen">
-          <h1
-            ref={textOne}
-            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-white sm:text-7xl lg:text-8xl"
+        <div className="relative mx-auto h-screen w-10/12 max-w-[1400px]">
+          <div className="morph h-screen">
+            <h1
+              ref={textOne}
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-white sm:text-7xl lg:text-8xl"
+            >
+              BRUCE HSU
+            </h1>
+            <h1
+              ref={textTwo}
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F]  opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              WEB DEVELOPER
+            </h1>
+            <h1
+              ref={textThree}
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              eCOMMERCE EXPERT
+            </h1>
+            <h1
+              ref={textFour}
+              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              ASPIRING YOUTUBER
+            </h1>
+          </div>
+          <div
+            ref={arrowContainer}
+            className="absolute bottom-5 left-1/2 -translate-x-1/2"
           >
-            BRUCE HSU
-          </h1>
-          <h1
-            ref={textTwo}
-            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F]  opacity-0 sm:text-7xl lg:text-8xl"
-          >
-            WEB DEVELOPER
-          </h1>
-          <h1
-            ref={textThree}
-            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] opacity-0 sm:text-7xl lg:text-8xl"
-          >
-            eCOMMERCE EXPERT
-          </h1>
-          <h1
-            ref={textFour}
-            className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] opacity-0 sm:text-7xl lg:text-8xl"
-          >
-            ASPIRING YOUTUBER
-          </h1>
-        </div>
-        <div
-          ref={arrowContainer}
-          className="absolute bottom-5 left-1/2 -translate-x-1/2"
-        >
-          <i
-            ref={arrowIcon}
-            className="ri-arrow-down-s-line text-7xl text-white"
-          ></i>
+            <i
+              ref={arrowIcon}
+              className="ri-arrow-down-s-line text-7xl text-white"
+            ></i>
+          </div>
         </div>
       </section>
     </>

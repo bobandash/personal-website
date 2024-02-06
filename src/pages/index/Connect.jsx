@@ -1,12 +1,62 @@
 // TO-DO: learn canvas to do this in a less hacky way
 /* eslint-disable react/no-unescaped-entities */
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
+
+function SeparateIntoSpans({ text }) {
+  const splitText = [...text];
+  const container = useRef(null);
+  useGSAP(
+    () => {
+      const timeline = gsap.timeline({
+        scrollTrigger: container.current,
+      });
+      timeline.fromTo(
+        ".letter",
+        {
+          translateY: "100%",
+        },
+        {
+          translateY: "0%",
+          duration: 1,
+          stagger: {
+            amount: 0.25,
+            from: "center",
+          },
+          ease: "power2.inOut",
+          grid: "auto",
+        },
+      );
+    },
+    { scope: container },
+  );
+  return (
+    <div
+      className="relative flex justify-center overflow-hidden"
+      ref={container}
+    >
+      {splitText.map((char, index) => (
+        <span
+          key={index}
+          className="letter font-big -translate-y-full text-center text-4xl font-bold uppercase text-white sm:text-6xl lg:text-7xl"
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 const GetInTouch = () => {
   return (
-    <section className="relative flex h-screen items-center">
+    <section className="bg-primary relative flex h-screen items-center">
       <div className="mx-auto flex w-10/12 max-w-[800px] flex-col items-center justify-center gap-5 sm:gap-10">
-        <h1 className="font-big text-center text-4xl font-bold uppercase sm:text-6xl lg:text-7xl">
-          Let's Build The Future Together.
-        </h1>
+        <div className="flex flex-col gap-1">
+          <SeparateIntoSpans text={"Let's Build The"} />
+          <SeparateIntoSpans text={"Future Together"} />
+        </div>
         <Icons />
       </div>
       <Copyright />
@@ -14,10 +64,44 @@ const GetInTouch = () => {
   );
 };
 
+// TO-DO: add another html page that shows this when clicked
+{
+  /*         <div className="flex flex-col gap-1" ref={container}>
+          <SeparateIntoSpans text={"Let's Chat About"} />
+          <SeparateIntoSpans text={"What Excites You"} />
+        </div> */
+}
 const Icons = () => {
+  const container = useRef(null);
+  useGSAP(
+    () => {
+      const timeline = gsap.timeline({
+        scrollTrigger: container.current,
+      });
+      timeline.fromTo(
+        ".pushable",
+        {
+          opacity: 0,
+          scale: 1.25,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          delay: 1.5,
+          duration: 1,
+          stagger: 0.25,
+        },
+      );
+    },
+    { scope: container },
+  );
+
   return (
     <>
-      <div className="flex flex-row justify-center gap-5 md:gap-10">
+      <div
+        ref={container}
+        className="flex flex-row justify-center gap-5 md:gap-10"
+      >
         <a
           href="mailto:brucehsu1126@ucla.edu"
           className="pushable"
@@ -73,8 +157,8 @@ const Icons = () => {
 
 const Copyright = () => {
   return (
-    <div className="bg-primary absolute bottom-0 w-full py-3">
-      <p className="flex flex-row items-center justify-center gap-1 text-3xl font-bold uppercase text-white">
+    <div className="bg-secondary absolute bottom-0 w-full py-3">
+      <p className="flex flex-row items-center justify-center gap-1 text-3xl font-bold uppercase text-black">
         <i className="ri-copyright-line"></i>
         2024 Bruce Hsu
       </p>
