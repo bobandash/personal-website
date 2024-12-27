@@ -23,6 +23,7 @@ import GSAP from "../../assets/technologies/misc/gsap.png";
 import Python from "../../assets/technologies/misc/python.png";
 import VBA from "../../assets/technologies/misc/vba.png";
 import Webpack from "../../assets/technologies/misc/webpack.png";
+import AWS from "../../assets/technologies/misc/aws.png";
 
 // Import interests
 import Anime from "../../assets/interests/anime.png";
@@ -148,7 +149,8 @@ function OtherTechnology() {
         <IndividualIcon img={Git} text={"Git"} />
         <IndividualIcon img={GSAP} text={"GSAP"} />
       </div>
-      <div className="grid grid-cols-1 items-center justify-center text-4xl 2xl:text-5xl">
+      <div className="grid grid-cols-2 items-center justify-center text-4xl 2xl:text-5xl">
+        <IndividualIcon img={AWS} text={"AWS"} />
         <IndividualIcon img={Webpack} text={"Webpack"} />
       </div>
     </SkillsContainer>
