@@ -34,7 +34,7 @@ import Section from "./components/Section";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
-import { SectionHeader } from "./components/Header";
+import { SectionHeader } from "./components/SectionHeader";
 /* eslint-disable react/no-unescaped-entities */
 const ToolKit = () => {
   const container = useRef(null);
@@ -60,8 +60,8 @@ const ToolKit = () => {
   }, []);
 
   return (
-    <Section name={"Technologies"} isPrimary={false}>
-      <SectionHeader text={"Technologies"} isBlack={true} />
+    <Section name={"Technologies"} isPrimary={false} id={"toolkit"}>
+      <SectionHeader text={"Toolkit"} isBlack={true} />
       <div
         className="flex flex-col items-center gap-7 lg:mb-3 lg:mt-4 lg:flex-row lg:justify-around 2xl:mx-auto 2xl:w-[1200px] 2xl:justify-between"
         ref={container}
@@ -171,9 +171,9 @@ function InterestsContainer({ header, children }) {
 function Interests() {
   return (
     <InterestsContainer header={"Interests"}>
-      <div className="grid grid-cols-2 items-center justify-center text-4xl lg:gap-3 2xl:text-5xl">
+      <div className="grid  grid-cols-2 items-center justify-center text-4xl lg:gap-3 2xl:text-5xl">
         <IndividualIcon img={Anime} text={"Anime"} />
-        <IndividualIcon img={Chinese} text={"Chinese"} />
+        <IndividualIcon img={Chinese} text={"Mandarin"} />
       </div>
       <div className="grid grid-cols-2 items-center justify-center text-4xl lg:gap-3 2xl:text-5xl">
         <IndividualIcon img={Ecommerce} text={"eCommerce"} />

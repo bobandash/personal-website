@@ -1,39 +1,97 @@
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export function SectionHeader({ text, isBlack, isMobile, isDesktop }) {
-  const container = useRef();
-  const header = useRef();
-  useGSAP(() => {
-    gsap.fromTo(
-      header.current,
-      {
-        opacity: 0,
-        translateY: "50%",
-        webkitFilter: "blur(" + 12 + "px)",
-      },
-      {
-        scrollTrigger: container.current,
-        opacity: 1,
-        translateY: "0%",
-        duration: 0.5,
-        webkitFilter: "blur(" + 0 + "px)",
-      },
-    );
-  }, [container]);
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 0;
+      setIsScrolled(scrolled);
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToElement = useCallback((event, id, padding = 0) => {
+    event.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const targetPosition =
+        element.getBoundingClientRect().top + window.scrollY - padding;
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    }
+  }, []);
 
   return (
-    <div ref={container} className="overflow-hidden">
-      <h1
-        ref={header}
-        className={`text-center text-4xl font-bold uppercase sm:text-5xl md:text-7xl lg:text-7xl ${isBlack ? "text-black" : "text-white"} ${isMobile && "lg:hidden"} ${isDesktop && "hidden lg:block"}`}
-      >
-        {text}
-      </h1>
-      <hr
-        className={`border-b-4  ${isBlack ? "border-black" : "border-white"}`}
-      />
-    </div>
+    <header
+      className={`${isScrolled ? `bg-black py-5` : `bg-primary py-6`} fixed top-0 z-10 hidden w-full items-center font-bold text-white transition-all duration-300 ease-in-out lg:flex`}
+    >
+      <div className="mx-auto flex w-10/12 max-w-[1600px] justify-between text-5xl">
+        <div>
+          <a
+            href="#home"
+            onClick={(e) => {
+              scrollToElement(e, "home", 80);
+            }}
+          >
+            BH
+          </a>
+        </div>
+        <ul className="flex list-none items-center gap-7 text-xl">
+          <li>
+            <a
+              href="#about"
+              onClick={(e) => {
+                scrollToElement(e, "about", 80);
+              }}
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#projects"
+              onClick={(e) => {
+                scrollToElement(e, "projects", 80);
+              }}
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="#toolkit"
+              onClick={(e) => {
+                scrollToElement(e, "toolkit", 80);
+              }}
+            >
+              ToolKit
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                scrollToElement(e, "contact", 0);
+              }}
+            >
+              Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://bruhsu-jobsearch.s3.us-east-1.amazonaws.com/Hsu_Bruce_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Resume
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
   );
-}
+};
+
+export default Header;

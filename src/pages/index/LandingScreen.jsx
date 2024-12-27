@@ -1,173 +1,64 @@
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
+import { debounce } from "lodash";
+import { ScrollTrigger } from "gsap/all";
 
 // TO-DO: refactor gsap code into different files
 export default function LandingScreen() {
-  const textOne = useRef(null);
-  const textTwo = useRef(null);
-  const textThree = useRef(null);
-  const textFour = useRef(null);
   const arrowContainer = useRef(null);
   const arrowIcon = useRef(null);
-  const [screenWidth, setScreenWidth] = useState(screen.width);
+  const roleOne = useRef(null);
+  const roleTwo = useRef(null);
+  const roleThree = useRef(null);
 
   useEffect(() => {
-    const resizeScreen = () => {
-      setScreenWidth(screen.width);
+    const onResize = debounce(() => {
+      ScrollTrigger.refresh();
+    }, 1500);
+
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    return () => {
+      window.removeEventListener("resize", onResize);
     };
-    window.addEventListener("resize", resizeScreen);
-    return () => window.removeEventListener("resize", resizeScreen);
   }, []);
 
   useGSAP(() => {
+    if (!arrowContainer.current) return;
     const t1 = gsap.timeline({ repeat: -1 });
-    const arrowIcons = [arrowIcon.current];
-    const blurAmt = screenWidth < 500 ? "blur(2px)" : "blur(5px)";
-
     t1.fromTo(
-      textOne.current,
-      {
-        opacity: 0,
-        webkitFilter: blurAmt,
-        filter: blurAmt,
-        ease: "power2.inOut",
-      },
-      {
-        opacity: 1,
-        webkitFilter: "blur(" + 0 + "px)",
-        filter: "blur(" + 0 + "px)",
-        duration: 2,
-      },
-    )
-      .to(
-        arrowIcons,
-        {
-          color: "#FFFFFF",
-          duration: 0.1,
-        },
-        "<",
-      )
-      .to(textOne.current, {
-        opacity: 0,
-        webkitFilter: blurAmt,
-        filter: blurAmt,
-        duration: 2,
-        delay: 2,
-        ease: "power2.inOut",
-      })
-      .fromTo(
-        textTwo.current,
-        {
-          opacity: 0,
-          webkitFilter: blurAmt,
-          filter: blurAmt,
-        },
-        {
-          opacity: 1,
-          webkitFilter: "blur(" + 0 + "px)",
-          filter: "blur(" + 0 + "px)",
-          duration: 2,
-        },
-        "-=1.25",
-      )
-      .to(
-        arrowIcons,
-        {
-          color: "#F0DB4F",
-          duration: 2,
-        },
-        "<",
-      )
-      .to(textTwo.current, {
-        opacity: 0,
-        webkitFilter: blurAmt,
-        filter: blurAmt,
-        duration: 2,
-        delay: 2,
-        ease: "power2.inOut",
-      })
-      .fromTo(
-        textThree.current,
-        {
-          opacity: 0,
-          webkitFilter: blurAmt,
-          filter: blurAmt,
-        },
-        {
-          opacity: 1,
-          webkitFilter: "blur(" + 0 + "px)",
-          filter: "blur(" + 0 + "px)",
-          duration: 2,
-        },
-        "-=1.25",
-      )
-      .to(
-        arrowIcons,
-        {
-          color: "#5E8E3E",
-          duration: 2,
-        },
-        "<",
-      )
-      .to(textThree.current, {
-        opacity: 0,
-        webkitFilter: blurAmt,
-        filter: blurAmt,
-        duration: 2,
-        delay: 2,
-        ease: "power2.inOut",
-      })
-      .fromTo(
-        textFour.current,
-        {
-          opacity: 0,
-          webkitFilter: blurAmt,
-          filter: blurAmt,
-        },
-        {
-          opacity: 1,
-          webkitFilter: "blur(" + 0 + "px)",
-          filter: "blur(" + 0 + "px)",
-          duration: 2,
-        },
-        "-=1.25",
-      )
-      .to(
-        arrowIcons,
-        {
-          color: "#FF0000",
-          duration: 2,
-        },
-        "<",
-      )
-      .to(textFour.current, {
-        opacity: 0,
-        webkitFilter: blurAmt,
-        filter: blurAmt,
-        duration: 2,
-        delay: 2,
-        ease: "power2.inOut",
-      });
-  }, [textOne, textTwo, textThree, textFour, screenWidth]);
-
-  // bottom arrow
-  useGSAP(() => {
-    const t2 = gsap.timeline({ repeat: -1 });
-    t2.fromTo(
       arrowContainer.current,
-      {
-        bottom: "40px",
-      },
-      {
-        bottom: "15px",
-        duration: 1,
-      },
+      { bottom: "40px" },
+      { bottom: "5px", duration: 1.25 },
     ).to(arrowContainer.current, {
       bottom: "40px",
       duration: 1,
     });
   }, [arrowContainer]);
+
+  useGSAP(() => {
+    if (!roleOne.current || !roleTwo.current || !roleThree.current) return;
+    const elements = [roleOne.current, roleTwo.current, roleThree.current];
+    const t2 = gsap.timeline({ repeat: -1 });
+    elements.forEach((element) => {
+      t2.fromTo(
+        element,
+        { y: "100%", opacity: 0 },
+        { y: "0%", opacity: 1, duration: 1, ease: "power2.out" },
+      ).to(
+        element,
+        {
+          y: "-100%",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.in",
+        },
+        "+=0.5",
+      );
+    });
+  }, [roleOne, roleTwo, roleThree]);
 
   return (
     <>
@@ -185,43 +76,48 @@ export default function LandingScreen() {
           </filter>
         </defs>
       </svg>
-      <section className="bg-primary h-screen">
+      <section className="bg-primary h-screen" id="home">
         <div className="relative mx-auto h-screen w-10/12 max-w-[1400px]">
-          <div className="morph h-screen">
-            <h1
-              ref={textOne}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-white sm:text-7xl lg:text-8xl"
-            >
-              BRUCE HSU
+          <div className="flex h-screen flex-col items-center justify-center gap-4">
+            <h1 className="font-big whitespace-nowrap text-7xl font-bold text-white sm:text-8xl md:text-9xl">
+              Bruce Hsu
             </h1>
-            <h1
-              ref={textTwo}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#F0DB4F] sm:text-6xl md:text-7xl lg:text-8xl"
-            >
-              WEB DEVELOPER
-            </h1>
-            <h1
-              ref={textThree}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#5E8E3E] sm:text-6xl md:text-7xl lg:text-8xl"
-            >
-              eCOMMERCE EXPERT
-            </h1>
-            <h1
-              ref={textFour}
-              className="role font-big absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-3xl font-bold text-[#FF0000] sm:text-6xl md:text-7xl lg:text-8xl"
-            >
-              ASPIRING YOUTUBER
-            </h1>
+            <div className="relative h-8 w-full overflow-hidden sm:h-9 md:h-12">
+              <div
+                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
+                ref={roleOne}
+              >
+                <h2 className="whitespace-nowrap text-2xl font-bold text-yellow-300 sm:text-3xl md:text-5xl">
+                  Full-Stack Web Developer
+                </h2>
+              </div>
+              <div
+                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
+                ref={roleTwo}
+              >
+                <h2 className="whitespace-nowrap text-2xl font-bold text-green-600 sm:text-3xl md:text-5xl">
+                  E-Commerce Specialist
+                </h2>
+              </div>
+              <div
+                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
+                ref={roleThree}
+              >
+                <h2 className="whitespace-nowrap text-2xl font-bold text-red-600 sm:text-3xl md:text-5xl">
+                  Aspiring Storyteller
+                </h2>
+              </div>
+            </div>
           </div>
-          <div
-            ref={arrowContainer}
-            className="absolute bottom-5 left-1/2 -translate-x-1/2"
-          >
-            <i
-              ref={arrowIcon}
-              className="ri-arrow-down-s-line text-7xl text-white"
-            ></i>
-          </div>
+        </div>
+        <div
+          ref={arrowContainer}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2"
+        >
+          <i
+            ref={arrowIcon}
+            className="ri-arrow-down-s-line text-7xl text-white"
+          ></i>
         </div>
       </section>
     </>

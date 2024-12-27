@@ -51,7 +51,10 @@ function SeparateIntoSpans({ text }) {
 
 const GetInTouch = () => {
   return (
-    <section className="bg-primary relative flex h-screen items-center">
+    <section
+      className="bg-primary relative flex h-screen items-center"
+      id="contact"
+    >
       <div className="mx-auto flex w-10/12 max-w-[800px] flex-col items-center justify-center gap-5 sm:gap-10">
         <div className="flex flex-col gap-1">
           <SeparateIntoSpans text={"Let's Build The"} />
@@ -64,13 +67,6 @@ const GetInTouch = () => {
   );
 };
 
-// TO-DO: add another html page that shows this when clicked
-{
-  /*         <div className="flex flex-col gap-1" ref={container}>
-          <SeparateIntoSpans text={"Let's Chat About"} />
-          <SeparateIntoSpans text={"What Excites You"} />
-        </div> */
-}
 const Icons = () => {
   const container = useRef(null);
   useGSAP(
@@ -103,7 +99,7 @@ const Icons = () => {
         className="flex flex-row justify-center gap-5 md:gap-10"
       >
         <a
-          href="mailto:brucehsu1126@ucla.edu"
+          href="mailto:brucehsu1126@gmail.com"
           className="pushable"
           target="_blank"
           rel="noreferrer"
@@ -139,8 +135,8 @@ const Icons = () => {
           </span>
         </a>
         <a
-          href="https://www.youtube.com/@brucecreates"
-          className="pushable hidden sm:inline"
+          href="https://www.youtube.com/@bruceysoo"
+          className="pushable sm:inline"
           target="_blank"
           rel="noreferrer"
         >

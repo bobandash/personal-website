@@ -11,10 +11,12 @@ import blankmodDesktop from "../../assets/projects_desktop/blankmod.png";
 import blogDesktop from "../../assets/projects_desktop/blog.png";
 import linkoutDesktop from "../../assets/projects_desktop/linkout.png";
 import kirbyDesktop from "../../assets/projects_desktop/kirby_shopping_cart.png";
+import synqSellDesktop from "../../assets/projects_desktop/synqsell.png";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { SectionHeader } from "./components/Header";
+import { SectionHeader } from "./components/SectionHeader";
 import Section from "./components/Section";
 
 const projectData = [
@@ -45,7 +47,7 @@ const projectData = [
       "ReactJs, MongoDB, ExpressJs, NodeJs, Typescript, AWS S3, CSS",
     createdAt: "December 2023",
     github: "https://github.com/bobandash/joonhee-blog",
-    liveDemo: "https://www.joonhee.xyz",
+    liveDemo: "https://joonheebock.netlify.app/",
   },
 
   {
@@ -73,7 +75,23 @@ const projectData = [
       "Using Hydrogen, Shopify's Headless Framework, BlankMod queries data through GraphQL to be able to set up campaigns with deadlines and funding goals.",
     technologies: "Remix, GraphQL, TailwindCSS, GSAP",
     createdAt: "January 2023",
-    liveDemo: "https://blankmod.com/",
+    liveDemo: "",
+  },
+  {
+    key: uuid(),
+    title: "SynqSell",
+    image1: blankmod1,
+    image2: blankmod2,
+    desktopImage: synqSellDesktop,
+    about: "Embedded Shopify Application",
+    description:
+      "SynqSell allows Shopify merchants to import products from other stores, and keep all product details in sync via webhooks.",
+    technologies:
+      "Remix, GraphQL, Node, TypeScript, GitHub Actions, AWS, CloudFormation",
+    createdAt: "December 2024",
+    github: "https://github.com/bobandash/synqsell_shopify",
+    liveDemo: "",
+    status: "Pending...",
   },
 ];
 
@@ -81,7 +99,7 @@ export default function Projects() {
   const reversed = [...projectData].reverse();
 
   return (
-    <Section isPrimary={true}>
+    <Section isPrimary={true} id={"projects"}>
       <SectionHeader text={"Projects"} isBlack={false} />
       {reversed.map((project, index) => {
         {
@@ -122,6 +140,7 @@ const ProjectSection = ({ project, isPrimary }) => {
     technologies,
     github,
     liveDemo,
+    status,
     desktopImage,
   } = project;
 
@@ -154,7 +173,7 @@ const ProjectSection = ({ project, isPrimary }) => {
         <Header text={title} isBlack={textIsBlack} />
         <About isBlack={textIsBlack} text={about} />
       </div>
-      <div className="flex flex-col gap-4 md:gap-5 lg:grid lg:grid-cols-2 lg:gap-8 2xl:gap-12">
+      <div className="flex flex-col gap-4 md:gap-5 lg:gap-8 xl:grid xl:grid-cols-2 2xl:gap-12">
         <Images desktopImage={desktopImage} title={title} />
         <div className="flex flex-col gap-4 md:justify-center md:gap-3 lg:gap-5 xl:justify-start">
           <Description isBlack={textIsBlack} text={description} />
@@ -162,6 +181,7 @@ const ProjectSection = ({ project, isPrimary }) => {
           <ExternalLinks
             github={github}
             liveDemo={liveDemo}
+            status={status}
             isBlack={textIsBlack}
           />
         </div>
@@ -173,7 +193,7 @@ const ProjectSection = ({ project, isPrimary }) => {
 function Header({ text, isBlack, isMobile, isDesktop }) {
   return (
     <h1
-      className={`text-center text-4xl font-bold uppercase sm:text-5xl md:text-left md:text-7xl ${isBlack ? "text-black" : "text-white"} ${isMobile && "lg:hidden"} ${isDesktop && "hidden lg:block"}`}
+      className={`text-center text-4xl font-bold uppercase sm:text-5xl md:text-left md:text-7xl lg:text-6xl xl:text-7xl ${isBlack ? "text-black" : "text-white"} ${isMobile && "lg:hidden"} ${isDesktop && "hidden lg:block"}`}
     >
       {text}
     </h1>
@@ -236,10 +256,10 @@ function Technologies({ isBlack, text }) {
   );
 }
 
-function ExternalLinks({ github, liveDemo, isBlack }) {
+function ExternalLinks({ github, liveDemo, status, isBlack }) {
   return (
     <div className="flex justify-center gap-5 sm:justify-normal md:flex-row">
-      {github && liveDemo ? (
+      {github ? (
         <>
           <a
             href={github}
@@ -267,6 +287,17 @@ function ExternalLinks({ github, liveDemo, isBlack }) {
           className={`rounded-lg border-2 px-4 py-2 text-center text-lg font-bold uppercase sm:flex-none sm:px-6 md:text-2xl ${isBlack ? "border-black text-black" : "border-white text-white"} flex-1 transition-all hover:bg-white hover:text-black`}
         >
           See it Live
+        </a>
+      )}
+      {status && (
+        <a
+          disabled={true}
+          target="_blank"
+          rel="noreferrer"
+          href={""}
+          className={`cursor-not-allowed rounded-lg border-2 px-4 py-2 text-center text-lg font-bold uppercase sm:flex-none sm:px-6 md:text-2xl ${isBlack ? "border-black text-black" : "border-white text-white"} flex-1 transition-all`}
+        >
+          {status}
         </a>
       )}
     </div>
