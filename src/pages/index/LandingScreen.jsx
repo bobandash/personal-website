@@ -45,11 +45,12 @@ export default function LandingScreen() {
     elements.forEach((element) => {
       t2.fromTo(
         element,
-        { y: "100%", opacity: 0 },
-        { y: "0%", opacity: 1, duration: 1, ease: "power2.out" },
+        { y: "100%", x: "-50%", opacity: 0 },
+        { y: "0%", x: "-50%", opacity: 1, duration: 1, ease: "power2.out" },
       ).to(
         element,
         {
+          x: "-50%",
           y: "-100%",
           opacity: 0,
           duration: 1.5,
@@ -83,24 +84,18 @@ export default function LandingScreen() {
               Bruce Hsu
             </h1>
             <div className="relative h-8 w-full overflow-hidden sm:h-9 md:h-12">
-              <div
-                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
-                ref={roleOne}
-              >
+              <div className="absolute left-1/2 translate-y-full" ref={roleOne}>
                 <h2 className="whitespace-nowrap text-2xl font-bold text-yellow-300 sm:text-3xl md:text-5xl">
                   Full-Stack Web Developer
                 </h2>
               </div>
-              <div
-                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
-                ref={roleTwo}
-              >
+              <div className="absolute left-1/2 translate-y-full" ref={roleTwo}>
                 <h2 className="whitespace-nowrap text-2xl font-bold text-green-600 sm:text-3xl md:text-5xl">
                   E-Commerce Specialist
                 </h2>
               </div>
               <div
-                className="absolute left-1/2 -translate-x-1/2 translate-y-full"
+                className="absolute left-1/2 translate-y-full"
                 ref={roleThree}
               >
                 <h2 className="whitespace-nowrap text-2xl font-bold text-red-600 sm:text-3xl md:text-5xl">
