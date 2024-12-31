@@ -79,15 +79,6 @@ const Header = () => {
               Contact
             </a>
           </li>
-          <li>
-            <a
-              href="https://bruhsu-jobsearch.s3.us-east-1.amazonaws.com/Hsu_Bruce_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Resume
-            </a>
-          </li>
         </ul>
       </div>
     </header>
