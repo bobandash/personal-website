@@ -55,7 +55,7 @@ const ToolKit = () => {
       {
         opacity: 1,
         scale: 1,
-        duration: 1.0,
+        duration: 1.5,
       },
     );
   }, []);
