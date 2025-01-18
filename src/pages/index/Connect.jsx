@@ -134,7 +134,7 @@ const Icons = () => {
             <i className="ri-linkedin-box-fill block text-2xl text-black sm:text-3xl md:text-5xl"></i>
           </span>
         </a>
-        <a
+        {/* <a
           href="https://www.youtube.com/@bruceysoo"
           className="pushable sm:inline"
           target="_blank"
@@ -145,7 +145,7 @@ const Icons = () => {
           <span className="front">
             <i className="ri-youtube-fill block text-2xl text-black sm:text-3xl md:text-5xl"></i>
           </span>
-        </a>
+        </a> */}
       </div>
     </>
   );

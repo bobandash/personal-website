@@ -50,12 +50,12 @@ const ToolKit = () => {
       ".container",
       {
         opacity: 0.5,
-        scale: 1.1,
+        scale: 1.2,
       },
       {
         opacity: 1,
         scale: 1,
-        duration: 1.5,
+        duration: 1.0,
       },
     );
   }, []);
